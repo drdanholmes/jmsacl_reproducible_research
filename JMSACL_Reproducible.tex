@@ -107,10 +107,14 @@ Laboratory} % Sets Journal name
 \newline \large Application to JMASCL and other Elsevier Journals.}
     \author[SPH,UBC]{Daniel T. Holmes\corref{1}}
    \ead{dtholmes@mail.ubc.ca} 
+    \author[SPH,PHCDP]{Mahdi Mobini}
+   \ead{mahdi.mobini@gmail.com} 
     \author[UO,TOH,EORLA]{Christopher R. McCudden}
    \ead{cmccudde@uottawa.ca} 
       \address[SPH]{St.~Paul's Hospital Department of Pathology and
 Laboratory Medicine, 1081 Burrard St., Vancouver, BC V6Z 1Y6 Canada}
+    \address[PHCDP]{Providence Health Digital Products, 1190 Hornby St.,
+Vancouver, BC V6Z 2K5 Canada}
     \address[UBC]{University of British Columbia Department of Pathology
 and Laboratory Medicine, 2211 Wesbrook Mall, Vancouver, BC V6T 1Z7
 Canada}
@@ -695,15 +699,16 @@ developed source or to improve performance.
 While a reader new to the concept of literate programming may not yet
 perceive the need, preparation of a manuscript in RMarkdown permits the
 use of a version-control system such as Git and a hosting system such as
-\href{https://github.com/}{github} or
-\href{https://gitlab.com/}{gitlab}. These systems allow change-tracking,
+\href{https://github.com/}{github}. These systems allow change-tracking,
 collaboration and (when necessary) reversion to prior versions of the
 source code. By this means not only the final product but all prior
 incarnations are available for review. In contrast, traditional
 GUI-based statistical and document preparation tools generally lack
-mechanisms to track revisions.
+mechanisms to track revisions. The RMarkdown source code for this
+manuscript can be downloaded at
+\href{https://github.com/drdanholmes/jmsacl_reproducible_research}{github.com/drdanholmes/jmsacl\_reproducible\_research}.
 
-Notwithstanding the transparency that the RMardown workflow affords,
+Notwithstanding the transparency that the RMarkdown workflow affords,
 there still remains the problem that the R Language packages undergo
 very rapid development, especially those associated with the popular
 tidyverse suite {[}27{]}. This means that documents that properly knit
@@ -714,7 +719,7 @@ renv and checkpoint packages. The \textbf{renv} package creates a local
 R library within an R project {[}28{]}. Any R processes launched within
 the project directory use the dedicated project library instead of the
 user's regular R library, thereby guaranteeing future behaviour of the
-code. The \textbf{checkpoint}and \textbf{packrat} packages address the
+code. The \textbf{checkpoint} and \textbf{packrat} packages address the
 same problem with different strategies {[}29,30{]}.
 
 Both of these package-dependency solutions may still have compatibility
@@ -724,19 +729,22 @@ containerization with Docker or software container solution {[}31--33{]}
 into which all necessary software is contained in a minimalistic image
 that consumes much less resources than a virtual machine. The research
 can then be shared as a Docker image without concern that any required
-software is missing or out of date.
+software is missing or out of date. For illustration purposes, we have
+containerized this manuscript and its dependencies using Docker. The
+Docker image is available at XXX and a description of how to use the
+image is provided as an appendix in the supplemental material.
 
-The authors should also acknowledge that writing a manuscript using
-literate programming tools is more challenging and may be somewhat
-tedious in comparison to using a graphical user interface. Moreover, it
-is probably slower {[}34{]}. Not all scientists can or should be
-expected to become proficient in the use of Markdown, R, or python in
-order to be able to share their scientific findings. Also challenging is
-the fact that reproducible research \emph{de facto} requires the sharing
-of the raw data which scientists are reticent to do since others might
-``scoop'' them on new findings using their own data. Additionally, data
-sharing introduces numerous questions and challenges as it pertains to
-research ethics {[}35{]}.
+The readers should understand that writing a manuscript using literate
+programming tools is more challenging and may be somewhat tedious in
+comparison to using GUI wordprocessing and/or statistical programs.
+Moreover, the process is probably slower {[}34{]}. Not all scientists
+can or should be expected to become proficient in the use of Markdown,
+R, or Python in order to be able to share their scientific findings.
+Also challenging is the fact that reproducible research \emph{de facto}
+requires the sharing of the raw data which scientists are reticent to do
+since others might ``scoop'' them on new findings using their own data.
+Additionally, data sharing introduces numerous questions and challenges
+as it pertains to research ethics {[}35{]}.
 
 Despite the comparative tedium of coding down to the sentence level, it
 is important to note that manuscript changes required after expert
@@ -776,13 +784,8 @@ programming and reproducible research. While it may initially seem odd
 or intimidating, the tools are powerful, under the complete control of
 the user, and entirely free. We hope that this article facilitates
 students and researchers making the jump from ``mouse-moves'' to
-programming and reproducible research. The RMarkdown source code for
-this manuscript can be downloaded at
-\href{https://gitlab.com/dtholmes/jmsacl-data-science-issue}{gitlab.com/dtholmes/jmsacl-data-science-issue}.
-
-\hypertarget{references}{%
-\section*{References}\label{references}}
-\addcontentsline{toc}{section}{References}
+programming and reproducible research. \# References \{\#references
+.unnumbered\}
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{0}{0}
