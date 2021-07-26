@@ -53,6 +53,15 @@ knitr::opts_chunk$set(fig.pos = "H", out.extra = "")
 knitr::opts_chunk$set(tidy.opts = list(width.cutoff = 60), tidy = TRUE)
 ```
 
+```{r renv, eval=FALSE}
+# this code was executed to create the renv snapshot and the renv.lock lockfile
+renv::init()
+renv::snapshot()
+# this line should be executed with an R project to obtain the historical R libraries used to build the project.
+renv::init()
+renv::restore()
+```
+
 # Introduction
 
 There is increasing attention being paid to the concept of reproducible research in the biological and medical sciences @munafo2017manifesto. The problem of poor reproducibility of biomedical research has been attributed to a number of factors: study design, preanalytical handling, reagent lot variation, suboptimal analytical reproducibility, researcher bias, incorrect use of statistical methodologies, and unexpected artifacts of software--even when working-as-designed.
