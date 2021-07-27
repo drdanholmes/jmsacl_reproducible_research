@@ -706,26 +706,28 @@ incarnations are available for review. In contrast, traditional
 GUI-based statistical and document preparation tools generally lack
 mechanisms to track revisions. The RMarkdown source code for this
 manuscript can be downloaded at
-\href{https://github.com/drdanholmes/jmsacl_reproducible_research}{github.com/drdanholmes/jmsacl\_reproducible\_research}.
+\href{https://github.com/drdanholmes/jmsacl_reproducible_research}{github.com/drdanholmes/jmsacl\_reproducible\_research}
+{[}27{]}.
 
 Notwithstanding the transparency that the RMarkdown workflow affords,
 there still remains the problem that the R Language packages undergo
 very rapid development, especially those associated with the popular
-tidyverse suite {[}27{]}. This means that documents that properly knit
+tidyverse suite {[}28{]}. This means that documents that properly knit
 at present, may not knit in future because of package or function
 modification and/or deprecation. However, solutions to this problem are
 well-developed and the reader is encouraged to explore the use of the
 renv and checkpoint packages. The \textbf{renv} package creates a local
-R library within an R project {[}28{]}. Any R processes launched within
+R library within an R project {[}29{]}. Any R processes launched within
 the project directory use the dedicated project library instead of the
 user's regular R library, thereby guaranteeing future behaviour of the
-code. The \textbf{checkpoint} and \textbf{packrat} packages address the
-same problem with different strategies {[}29,30{]}.
+code. Construction and reconstruction of local \emph{renv} libraries is
+discussed in Appendix A. The \textbf{checkpoint} and \textbf{packrat}
+packages address the same problem with different strategies {[}30,31{]}.
 
 Both of these package-dependency solutions may still have compatibility
 problems, particularly as it pertains to the version of R itself. For
 this reason perhaps the closest to being a definitive solution is
-containerization with Docker or software container solution {[}31--33{]}
+containerization with Docker or software container solution {[}32--34{]}
 into which all necessary software is contained in a minimalistic image
 that consumes much less resources than a virtual machine. The research
 can then be shared as a Docker image without concern that any required
@@ -737,14 +739,14 @@ image is provided as an appendix in the supplemental material.
 The readers should understand that writing a manuscript using literate
 programming tools is more challenging and may be somewhat tedious in
 comparison to using GUI wordprocessing and/or statistical programs.
-Moreover, the process is probably slower {[}34{]}. Not all scientists
+Moreover, the process is probably slower {[}35{]}. Not all scientists
 can or should be expected to become proficient in the use of Markdown,
 R, or Python in order to be able to share their scientific findings.
 Also challenging is the fact that reproducible research \emph{de facto}
 requires the sharing of the raw data which scientists are reticent to do
 since others might ``scoop'' them on new findings using their own data.
 Additionally, data sharing introduces numerous questions and challenges
-as it pertains to research ethics {[}35{]}.
+as it pertains to research ethics {[}36{]}.
 
 Despite the comparative tedium of coding down to the sentence level, it
 is important to note that manuscript changes required after expert
@@ -757,8 +759,8 @@ The use of GUIs for data analysis is often necessary in laboratory
 medicine due to proprietary instrument file formats. However, laboratory
 medicine and biomedical research communities have made many unforced
 errors due to unwanted or unexpected behavior in the use MS Excel for
-example {[}36{]} despite being prominently identified as problematic in
-2004 {[}37{]}.
+example {[}37{]} despite being prominently identified as problematic in
+2004 {[}38{]}.
 
 The availability and usability of notebook style tools report generation
 tools for R and Python along with similar offerings for other languages
@@ -784,8 +786,11 @@ programming and reproducible research. While it may initially seem odd
 or intimidating, the tools are powerful, under the complete control of
 the user, and entirely free. We hope that this article facilitates
 students and researchers making the jump from ``mouse-moves'' to
-programming and reproducible research. \# References \{\#references
-.unnumbered\}
+programming and reproducible research.
+
+\hypertarget{references}{%
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{0}{0}
@@ -955,8 +960,13 @@ Reticulate: R interface to python, 2017.
 integration between {R} and {Julia}, The Journal of Open Source
 Software. 4 (2019) 1284. \url{https://doi.org/10.21105/joss.01284}.}
 
-\leavevmode\hypertarget{ref-wickham2019}{}%
+\leavevmode\hypertarget{ref-drdanholmesgithub}{}%
 \CSLLeftMargin{{[}27{]} }
+\CSLRightInline{D.T. Holmes, 2021.
+\url{https://github.com/drdanholmes/jmsacl_reproducible_research}.}
+
+\leavevmode\hypertarget{ref-wickham2019}{}%
+\CSLLeftMargin{{[}28{]} }
 \CSLRightInline{H. Wickham, M. Averick, J. Bryan, W. Chang, L.D.
 McGowan, R. François, G. Grolemund, A. Hayes, L. Henry, J. Hester, M.
 Kuhn, T.L. Pedersen, E. Miller, S.M. Bache, K. Müller, J. Ooms, D.
@@ -965,65 +975,99 @@ Woo, H. Yutani, Welcome to the {tidyverse}, Journal of Open Source
 Software. 4 (2019) 1686. \url{https://doi.org/10.21105/joss.01686}.}
 
 \leavevmode\hypertarget{ref-renv}{}%
-\CSLLeftMargin{{[}28{]} }
+\CSLLeftMargin{{[}29{]} }
 \CSLRightInline{K. Ushey, Renv: Project environments, 2021.
 \url{https://CRAN.R-project.org/package=renv}.}
 
 \leavevmode\hypertarget{ref-ushley2021packrat}{}%
-\CSLLeftMargin{{[}29{]} }
+\CSLLeftMargin{{[}30{]} }
 \CSLRightInline{K. Ushey, J. McPherson, J. Cheng, A. Atkins, J. Allaire,
 Packrat: A dependency management system for projects and their r package
 dependencies, 2021. \url{https://CRAN.R-project.org/package=packrat}.}
 
 \leavevmode\hypertarget{ref-devries2020checkpoint}{}%
-\CSLLeftMargin{{[}30{]} }
+\CSLLeftMargin{{[}31{]} }
 \CSLRightInline{A. de Vries, Microsoft, Checkpoint: Install packages
 from snapshots on the checkpoint server for reproducibility, 2020.
 \url{https://CRAN.R-project.org/package=checkpoint}.}
 
 \leavevmode\hypertarget{ref-boettiger2015introduction}{}%
-\CSLLeftMargin{{[}31{]} }
+\CSLLeftMargin{{[}32{]} }
 \CSLRightInline{C. Boettiger, An introduction to docker for reproducible
 research, ACM SIGOPS Operating Systems Review. 49 (2015) 71--79.}
 
 \leavevmode\hypertarget{ref-nust2019containerit}{}%
-\CSLLeftMargin{{[}32{]} }
+\CSLLeftMargin{{[}33{]} }
 \CSLRightInline{D. Nüst, M. Hinz, Containerit: Generating dockerfiles
 for reproducible research with r, Journal of Open Source Software. 4
 (2019) 1603.}
 
 \leavevmode\hypertarget{ref-chamberlain2014using}{}%
-\CSLLeftMargin{{[}33{]} }
+\CSLLeftMargin{{[}34{]} }
 \CSLRightInline{R. Chamberlain, J. Schommer, Using docker to support
 reproducible research, DOI: Https://Doi. Org/10.6084/M9. Figshare.
 1101910 (2014) 44.}
 
 \leavevmode\hypertarget{ref-knauff2014efficiency}{}%
-\CSLLeftMargin{{[}34{]} }
+\CSLLeftMargin{{[}35{]} }
 \CSLRightInline{M. Knauff, J. Nejasmic, An efficiency comparison of
 document preparation systems used in academic research and development,
 PloS One. 9 (2014) e115069.}
 
 \leavevmode\hypertarget{ref-meyer2018practical}{}%
-\CSLLeftMargin{{[}35{]} }
+\CSLLeftMargin{{[}36{]} }
 \CSLRightInline{M.N. Meyer, Practical tips for ethical data sharing,
 Advances in Methods and Practices in Psychological Science. 1 (2018)
 131--144.}
 
 \leavevmode\hypertarget{ref-ziemann2016gene}{}%
-\CSLLeftMargin{{[}36{]} }
+\CSLLeftMargin{{[}37{]} }
 \CSLRightInline{M. Ziemann, Y. Eren, A. El-Osta, Gene name errors are
 widespread in the scientific literature, Genome Biology. 17 (2016)
 1--3.}
 
 \leavevmode\hypertarget{ref-zeeberg2004mistaken}{}%
-\CSLLeftMargin{{[}37{]} }
+\CSLLeftMargin{{[}38{]} }
 \CSLRightInline{B.R. Zeeberg, J. Riss, D.W. Kane, K.J. Bussey, E. Uchio,
 W.M. Linehan, J.C. Barrett, J.N. Weinstein, Mistaken identifiers: Gene
 name errors can be introduced inadvertently when using excel in
 bioinformatics, BMC Bioinformatics. 5 (2004) 1--6.}
 
+\leavevmode\hypertarget{ref-rprojects}{}%
+\CSLLeftMargin{{[}39{]} }
+\CSLRightInline{R. team, Using RStudio projects, 2021.
+\url{https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects}.}
+
 \end{CSLReferences}
+
+\hypertarget{appendix-a-using-the-renv-package-to-generate-a-local-library}{%
+\section*{Appendix A: Using the renv package to generate a local
+library}\label{appendix-a-using-the-renv-package-to-generate-a-local-library}}
+\addcontentsline{toc}{section}{Appendix A: Using the renv package to
+generate a local library}
+
+The \emph{renv} package {[}29{]} permits the reconstruction of the R
+library used at the time of authorship. In order to \emph{define} a
+local library for others to use in future, one must define the RMarkdown
+document as an R project {[}39{]} and execute the commands
+\texttt{renv::init()} and \texttt{renv::snapshot()} within the project
+context. This will generate a renv.lock file in the project folder which
+defines the R and package repositories, package names, package versions,
+and the hashes.
+
+To \emph{reconstruct} the the library used to generate the RMarkdown
+output of this manuscript, one must clone (or download) the
+\href{https://github.com/drdanholmes/jmsacl_reproducible_research}{github
+repository} {[}27{]} to their local machine, define it as an R project
+and the execute \texttt{renv::init()} and \texttt{renv::restore()}. This
+will download all the correct versions of the R packages to a
+within-project local library. When the RMarkdown file is knit, the local
+library will be used.
+
+If the version of R on the local machine differs from the one used to
+generate the RMarkdown output originally, warnings may result and there
+is finite (albeit improbable) risk of compile failure. This can be
+overcome with the use of the Docker.
 
 
 \end{document}
