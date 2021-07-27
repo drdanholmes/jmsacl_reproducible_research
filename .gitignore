@@ -40,3 +40,6 @@ vignettes/*.pdf
 
 # R renv libraries
 renv/
+
+# R profile
+.Rprofile
