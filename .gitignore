@@ -43,3 +43,9 @@ renv/
 
 # R profile
 .Rprofile
+
+# LaTeX files
+JMSACL_Reproducible.tex
+JMSACL_Reproducible.spl
+
+
