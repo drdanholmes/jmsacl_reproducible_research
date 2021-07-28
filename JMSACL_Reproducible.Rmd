@@ -6,7 +6,7 @@ author:
     affiliation: SPH,UBC
     footnote: 1
   - name: Mahdi Mobini
-    email: mahdi.mobini@gmail.com
+    email: mmobini@providencehealth.bc.ca
     affiliation: SPH,PHCDP
   - name: Christopher R. McCudden
     email: cmccudde@uottawa.ca
@@ -427,9 +427,42 @@ In summary, Rmarkdown offers a tremendous upside towards literature programming 
 
 <div id="refs"></div>
 
-# Appendix A: Using the renv package to generate a local library {.unnumbered}
+# Appendix
+
+## Using the renv package to generate a local library {.unnumbered}
  The *renv* package @renv permits the reconstruction of the R library used at the time of authorship. In order to *define* a local library for others to use in future, one must define the RMarkdown document as an R project @rprojects and execute the commands `renv::init()` and `renv::snapshot()` within the project context. This will generate a renv.lock file in the project folder which defines the R and package repositories, package names, package versions, and the hashes.  
  
-To *reconstruct* the the library used to generate the RMarkdown output of this manuscript, one must clone (or download) the [github repository](https://github.com/drdanholmes/jmsacl_reproducible_research) @drdanholmesgithub to their local machine, define it as an R project and the execute `renv::init()` and `renv::restore()`.  This will download all the correct versions of the R packages to a within-project local library. When the RMarkdown file is knit, the local library will be used. 
+To *reconstruct* the the library used to generate the RMarkdown output of this manuscript, one must clone (or download) the [github repository](https://github.com/drdanholmes/jmsacl_reproducible_research) @drdanholmesgithub to their local machine, define it as an R project (from an existing directory) as described in reference @rprojects and the execute `renv::init()` and `renv::restore()`.  This will download all the correct versions of the R packages to a within-project local library. When the RMarkdown file is knit, the local library will be used. 
 
 If the version of R on the local machine differs from the one used to generate the RMarkdown output originally, warnings may result and there is finite (albeit improbable) risk of compile failure. This can be overcome with the use of the Docker. 
+
+## Using the Docker Container to Generate RMarkdown Output Reproducibly {.unnumbered}
+
+We have prepared a docker container having all the Linux dependencies and R package dependencies used for authorship of this manuscript. This docker file is optimized for this paper and may or may not work for other RMarkdown files as it won't necessarily have all the required R dependencies.
+
+Open a command line shell session and navigate to a folder where you want the PDF output of the manuscript to be produced. By executing the following commands you will:
+
+1) pull the docker image from the dockerhub repository
+2) clone the manuscript github repository
+3) navigate into the project folder
+3) run the docker image and issue a command to the docker container to generate the PDF output.
+
+```{}
+# Pulls the Docker image to your local machine's docker engine
+docker pull drdanholmes/jmsacl_reproducible_research
+
+# Pulls down the gitub repository to the current working directory
+git clone https://github.com/drdanholmes/jmsacl_reproducible_research.git
+
+# Navigates to the downloaded project folder
+cd jmsacl_reproducible_research
+
+# Invokes the docker container to process the .Rmd file to PDF
+docker run --rm -it -w /home -v $PWD:/home m3d83/paper-jmsacl Rscript -e \
+'rmarkdown::render("JMSACL_Reproducible.Rmd")'
+```
+
+Should the user want to modify and rebuild the Docker image, they may access the Dockerfile on the [Dockerhub registry cited above](https://hub.docker.com/repository/docker/drdanholmes/jmsacl_reproducible_research) which is:
+[https://hub.docker.com/repository/docker/drdanholmes/jmsacl_reproducible_research](https://hub.docker.com/repository/docker/drdanholmes/jmsacl_reproducible_research)
+
+

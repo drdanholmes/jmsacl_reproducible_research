@@ -1040,11 +1040,14 @@ bioinformatics, BMC Bioinformatics. 5 (2004) 1--6.}
 
 \end{CSLReferences}
 
-\hypertarget{appendix-a-using-the-renv-package-to-generate-a-local-library}{%
-\section*{Appendix A: Using the renv package to generate a local
-library}\label{appendix-a-using-the-renv-package-to-generate-a-local-library}}
-\addcontentsline{toc}{section}{Appendix A: Using the renv package to
-generate a local library}
+\hypertarget{appendix}{%
+\section{Appendix}\label{appendix}}
+
+\hypertarget{using-the-renv-package-to-generate-a-local-library}{%
+\subsection*{Using the renv package to generate a local
+library}\label{using-the-renv-package-to-generate-a-local-library}}
+\addcontentsline{toc}{subsection}{Using the renv package to generate a
+local library}
 
 The \emph{renv} package {[}29{]} permits the reconstruction of the R
 library used at the time of authorship. In order to \emph{define} a
@@ -1059,15 +1062,67 @@ To \emph{reconstruct} the the library used to generate the RMarkdown
 output of this manuscript, one must clone (or download) the
 \href{https://github.com/drdanholmes/jmsacl_reproducible_research}{github
 repository} {[}27{]} to their local machine, define it as an R project
-and the execute \texttt{renv::init()} and \texttt{renv::restore()}. This
-will download all the correct versions of the R packages to a
-within-project local library. When the RMarkdown file is knit, the local
-library will be used.
+(from an existing directory) as described in reference {[}39{]} and the
+execute \texttt{renv::init()} and \texttt{renv::restore()}. This will
+download all the correct versions of the R packages to a within-project
+local library. When the RMarkdown file is knit, the local library will
+be used.
 
 If the version of R on the local machine differs from the one used to
 generate the RMarkdown output originally, warnings may result and there
 is finite (albeit improbable) risk of compile failure. This can be
 overcome with the use of the Docker.
+
+\hypertarget{using-the-docker-container-to-generate-rmarkdown-output-reproducibly}{%
+\subsection*{Using the Docker Container to Generate RMarkdown Output
+Reproducibly}\label{using-the-docker-container-to-generate-rmarkdown-output-reproducibly}}
+\addcontentsline{toc}{subsection}{Using the Docker Container to Generate
+RMarkdown Output Reproducibly}
+
+We have prepared a docker container having all the Linux dependencies
+and R package dependencies used for authorship of this manuscript. This
+docker file is optimized for this paper and may or may not work for
+other RMarkdown files as it won't necessarily have all the required R
+dependencies.
+
+Open a command line shell session and navigate to a folder where you
+want the PDF output of the manuscript to be produced. By executing the
+following commands you will:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  pull the docker image from the dockerhub repository
+\item
+  clone the manuscript github repository
+\item
+  navigate into the project folder
+\item
+  run the docker image and issue a command to the docker container to
+  generate the PDF output.
+\end{enumerate}
+
+\begin{verbatim}
+# Pulls the Docker image to your local machine's docker engine
+docker pull drdanholmes/jmsacl_reproducible_research
+
+# Pulls down the gitub repository to the current working directory
+git clone https://github.com/drdanholmes/jmsacl_reproducible_research.git
+
+# Navigates to the downloaded project folder
+cd jmsacl_reproducible_research
+
+# Invokes the docker container to process the .Rmd file to PDF
+docker run --rm -it -w /home -v $PWD:/home m3d83/paper-jmsacl Rscript -e \
+'rmarkdown::render("JMSACL_Reproducible.Rmd")'
+\end{verbatim}
+
+Should the user want to modify and rebuild the Docker image, they may
+access the Dockerfile on the
+\href{https://hub.docker.com/repository/docker/drdanholmes/jmsacl_reproducible_research}{Dockerhub
+registry cited above} which is:
+\url{https://hub.docker.com/repository/docker/drdanholmes/jmsacl_reproducible_research}
 
 
 \end{document}
