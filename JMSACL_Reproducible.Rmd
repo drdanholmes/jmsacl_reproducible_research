@@ -466,7 +466,7 @@ git clone https://github.com/drdanholmes/jmsacl_reproducible_research.git
 cd jmsacl_reproducible_research
 
 # Invokes the Docker container to process the .Rmd file to PDF
-docker run --rm -it -w /home -v $PWD:/home m3d83/paper-jmsacl Rscript -e \
+docker run --rm -it -w /home -v $PWD:/home drdanholmes/jmsacl_reproducible_research Rscript -e \
 'rmarkdown::render("JMSACL_Reproducible.Rmd")'
 ```
 
