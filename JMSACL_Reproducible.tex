@@ -108,7 +108,7 @@ Laboratory} % Sets Journal name
     \author[SPH,UBC]{Daniel T. Holmes\corref{1}}
    \ead{dtholmes@mail.ubc.ca} 
     \author[SPH,PHCDP]{Mahdi Mobini}
-   \ead{mahdi.mobini@gmail.com} 
+   \ead{mmobini@providencehealth.bc.ca} 
     \author[UO,TOH,EORLA]{Christopher R. McCudden}
    \ead{cmccudde@uottawa.ca} 
       \address[SPH]{St.~Paul's Hospital Department of Pathology and
@@ -152,7 +152,7 @@ University of Ottawa}
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-There is increasing attention being paid to the concept of reproducible
+There is increasing attention paid to the concept of reproducible
 research in the biological and medical sciences {[}1{]}. The problem of
 poor reproducibility of biomedical research has been attributed to a
 number of factors: study design, preanalytical handling, reagent lot
@@ -214,7 +214,7 @@ systems {[}12{]}. Additionally, in order to generate LaTeX code from
 which pdf files can be generated, it will be necessary to install the
 LaTeX markup language, which can be installed in a dedicated manner
 {[}11{]} or more simply by installing the R \textbf{tinytex} package
-{[}13{]}. The reader should then install the RStudio integrated
+{[}13{]}. The reader should also install the RStudio integrated
 development (IDE) environment {[}14{]}. In order to generate LaTeX
 results immediately compatible with submissions to Elsevier journals,
 the \textbf{rticles} {[}15{]} package is also required.
@@ -323,7 +323,7 @@ sublists are accomplished with indentation and the use of a \texttt{+}.
 \hypertarget{mathematics}{%
 \subsubsection{Mathematics}\label{mathematics}}
 
-RMarkdown allows the incorporation of accurately rendered mathematics
+RMarkdown allows the incorporation of beautifully rendered mathematics
 using the syntax of LaTeX. Mathematics can typeset inline by surrounding
 the mathematical expression by dollar signs so that
 \texttt{\$\textbackslash{}Delta\ G\ =\ \textbackslash{}Delta\ G\^{}\{\textbackslash{}circ\}\ +\ RT\ \textbackslash{}ln\{Q\}\$}
@@ -430,12 +430,12 @@ unique and are defined in the code chunk delimiter:
 For the purposes of illustration we will use a biomedical dataset
 available in the \textbf{pROC} package taken from a 2010 study by Turck
 et al examining blood biomarkers in patients suffering subarachnoid
-hemmorhage {[}17{]}. The dataset has 7 variables: 1. the Glasgow Coma
-Outcome Score (gos6: 1--6) 2. Clinical Outcome (Good/Poor) 3. Gender
-(M/F) 4. Age 5. The World Federation of Neurological Surgeons score
-(wfns: 1--5) 6. S100 calcium-binding protein B concentration (s100b in
-\(\mu\)g/L) and 7. Nucleoside diphosphate kinase A concentration (nkda
-in \(\mu\)g/L).
+hemmorhage {[}17{]}. The dataset has 7 variables named: 1. gos6: the
+Glasgow Coma Outcome Score (1--6) 2. outcome: Clinical Outcome
+(Good/Poor) 3. gender (M/F) 4. age 5. wfns: The World Federation of
+Neurological Surgeons score (1--5) 6. s100b: S100 calcium-binding
+protein B concentration (s100b in \(\mu\)g/L) and 7. ndka: Nucleoside
+diphosphate kinase A concentration (nkda in \(\mu\)g/L).
 
 While there are a number of ways to render a table into an RMarkdown
 document, to our mind the simplest means is to prepare a dataframe of
@@ -721,7 +721,7 @@ R library within an R project {[}29{]}. Any R processes launched within
 the project directory use the dedicated project library instead of the
 user's regular R library, thereby guaranteeing future behaviour of the
 code. Construction and reconstruction of local \emph{renv} libraries is
-discussed in Appendix A. The \textbf{checkpoint} and \textbf{packrat}
+discussed in the appendix. The \textbf{checkpoint} and \textbf{packrat}
 packages address the same problem with different strategies {[}30,31{]}.
 
 Both of these package-dependency solutions may still have compatibility
@@ -733,8 +733,9 @@ that consumes much less resources than a virtual machine. The research
 can then be shared as a Docker image without concern that any required
 software is missing or out of date. For illustration purposes, we have
 containerized this manuscript and its dependencies using Docker. The
-Docker image is available at XXX and a description of how to use the
-image is provided as an appendix in the supplemental material.
+Docker image is available at
+\url{https://hub.docker.com/repository/docker/drdanholmes/jmsacl_reproducible_research}
+and a description of how to use the image is provided in the appendix.
 
 The readers should understand that writing a manuscript using literate
 programming tools is more challenging and may be somewhat tedious in
@@ -1041,7 +1042,8 @@ bioinformatics, BMC Bioinformatics. 5 (2004) 1--6.}
 \end{CSLReferences}
 
 \hypertarget{appendix}{%
-\section{Appendix}\label{appendix}}
+\section*{Appendix}\label{appendix}}
+\addcontentsline{toc}{section}{Appendix}
 
 \hypertarget{using-the-renv-package-to-generate-a-local-library}{%
 \subsection*{Using the renv package to generate a local
@@ -1068,10 +1070,11 @@ download all the correct versions of the R packages to a within-project
 local library. When the RMarkdown file is knit, the local library will
 be used.
 
-If the version of R on the local machine differs from the one used to
-generate the RMarkdown output originally, warnings may result and there
-is finite (albeit improbable) risk of compile failure. This can be
-overcome with the use of the Docker.
+If the version of R, pandoc or any other operating system dependencies
+on the local machine differ from those used to generate the RMarkdown
+output originally, warnings may result and there is finite that the
+document will not compile. This can be overcome with the use of the
+Docker.
 
 \hypertarget{using-the-docker-container-to-generate-rmarkdown-output-reproducibly}{%
 \subsection*{Using the Docker Container to Generate RMarkdown Output
@@ -1079,32 +1082,32 @@ Reproducibly}\label{using-the-docker-container-to-generate-rmarkdown-output-repr
 \addcontentsline{toc}{subsection}{Using the Docker Container to Generate
 RMarkdown Output Reproducibly}
 
-We have prepared a docker container having all the Linux dependencies
+We have prepared a Docker container having all the Linux dependencies
 and R package dependencies used for authorship of this manuscript. This
-docker file is optimized for this paper and may or may not work for
+Docker file is optimized for this paper and may or may not work for
 other RMarkdown files as it won't necessarily have all the required R
-dependencies.
+package dependencies.
 
-Open a command line shell session and navigate to a folder where you
-want the PDF output of the manuscript to be produced. By executing the
-following commands you will:
+To use our Docker container to generate the manuscript PDF, open a
+command line shell session and navigate to a folder where you want the
+PDF output to be produced. By executing the following commands you will:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
 \tightlist
 \item
-  pull the docker image from the dockerhub repository
+  pull the Docker image from the dockerhub repository
 \item
   clone the manuscript github repository
 \item
   navigate into the project folder
 \item
-  run the docker image and issue a command to the docker container to
+  run the Docker image and issue a command to the Docker container to
   generate the PDF output.
 \end{enumerate}
 
 \begin{verbatim}
-# Pulls the Docker image to your local machine's docker engine
+# Pulls the Docker image to your local machine's Docker engine
 docker pull drdanholmes/jmsacl_reproducible_research
 
 # Pulls down the gitub repository to the current working directory
@@ -1113,15 +1116,15 @@ git clone https://github.com/drdanholmes/jmsacl_reproducible_research.git
 # Navigates to the downloaded project folder
 cd jmsacl_reproducible_research
 
-# Invokes the docker container to process the .Rmd file to PDF
+# Invokes the Docker container to process the .Rmd file to PDF
 docker run --rm -it -w /home -v $PWD:/home m3d83/paper-jmsacl Rscript -e \
 'rmarkdown::render("JMSACL_Reproducible.Rmd")'
 \end{verbatim}
 
-Should the user want to modify and rebuild the Docker image, they may
-access the Dockerfile on the
-\href{https://hub.docker.com/repository/docker/drdanholmes/jmsacl_reproducible_research}{Dockerhub
-registry cited above} which is:
+Should the user want to modify and rebuild the Docker image (to include
+other R libraries for example), they may access the Dockerfile on the
+\href{https://hub.docker.com/repository/docker/drdanholmes/jmsacl_reproducible_research}{Docker
+Hub registry cited above} which is:
 \url{https://hub.docker.com/repository/docker/drdanholmes/jmsacl_reproducible_research}
 
 

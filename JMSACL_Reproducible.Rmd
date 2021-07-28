@@ -64,7 +64,7 @@ renv::restore()
 
 # Introduction
 
-There is increasing attention being paid to the concept of reproducible research in the biological and medical sciences @munafo2017manifesto. The problem of poor reproducibility of biomedical research has been attributed to a number of factors: study design, preanalytical handling, reagent lot variation, suboptimal analytical reproducibility, researcher bias, incorrect use of statistical methodologies, and unexpected artifacts of software--even when working-as-designed.
+There is increasing attention paid to the concept of reproducible research in the biological and medical sciences @munafo2017manifesto. The problem of poor reproducibility of biomedical research has been attributed to a number of factors: study design, preanalytical handling, reagent lot variation, suboptimal analytical reproducibility, researcher bias, incorrect use of statistical methodologies, and unexpected artifacts of software--even when working-as-designed.
 
 Reproducibility in research has different components which have been previously defined as i) methods reproducibility: protocols, measurement procedures, reagents, data processing and analysis ii) results reproducibility: the ability for an independent study to obtain similar results in similar experimental conditions, iii) inferential reproducibility: the ability of another researcher to draw the same conclusions from the original data or a similar data set @goodman2016does.
 
@@ -78,7 +78,7 @@ In this article, we will review all aspects of reproducible manuscript preparati
 
 ## Necessary Software Installation
 
-The reader will need to install the R programming language on their computer which is available for MacOS, Linux and Windows operating systems @Rdownload. Additionally, in order to generate LaTeX code from which pdf files can be generated, it will be necessary to install the LaTeX markup language, which can be installed in a dedicated manner @latex_link or more simply by installing the R **tinytex** package @xie2019. The reader should then install the RStudio integrated development (IDE) environment @Rstudio. In order to generate LaTeX results immediately compatible with submissions to Elsevier journals, the **rticles** @rticles package is also required.
+The reader will need to install the R programming language on their computer which is available for MacOS, Linux and Windows operating systems @Rdownload. Additionally, in order to generate LaTeX code from which pdf files can be generated, it will be necessary to install the LaTeX markup language, which can be installed in a dedicated manner @latex_link or more simply by installing the R **tinytex** package @xie2019. The reader should also install the RStudio integrated development (IDE) environment @Rstudio. In order to generate LaTeX results immediately compatible with submissions to Elsevier journals, the **rticles** @rticles package is also required.
 
 ## Creating a New Manuscript Template
 
@@ -121,7 +121,7 @@ knitr::include_graphics('Figures/Figure3.png')
 
 ### Mathematics
 
-RMarkdown allows the incorporation of accurately rendered mathematics using the syntax of LaTeX. Mathematics can typeset inline by surrounding the mathematical expression by dollar signs so that `$\Delta G = \Delta G^{\circ} + RT \ln{Q}$` will be rendered $\Delta G = \Delta G^{\circ} + RT \ln{Q}$. If mathematics is surrounded by `$$` on each side, it will be typeset as a formula centered on a new line so that `$$\frac{d^2y}{dx^2} + (a-2q\cos2x)y = 0$$` is rendered:
+RMarkdown allows the incorporation of beautifully rendered mathematics using the syntax of LaTeX. Mathematics can typeset inline by surrounding the mathematical expression by dollar signs so that `$\Delta G = \Delta G^{\circ} + RT \ln{Q}$` will be rendered $\Delta G = \Delta G^{\circ} + RT \ln{Q}$. If mathematics is surrounded by `$$` on each side, it will be typeset as a formula centered on a new line so that `$$\frac{d^2y}{dx^2} + (a-2q\cos2x)y = 0$$` is rendered:
 
 $$\frac{d^2y}{dx^2} + (a-2q\cos2x)y = 0$$
 
@@ -175,7 +175,15 @@ It is customary (though optional) to name code chunks for the purposes of quick 
 
 ### Tables
 
-For the purposes of illustration we will use a biomedical dataset available in the **pROC** package taken from a 2010 study by Turck et al examining blood biomarkers in patients suffering subarachnoid hemmorhage @turck2010multiparameter. The dataset has 7 variables: 1. the Glasgow Coma Outcome Score (gos6: 1--6) 2. Clinical Outcome (Good/Poor) 3. Gender (M/F) 4. Age 5. The World Federation of Neurological Surgeons score (wfns: 1--5) 6. S100 calcium-binding protein B concentration (s100b in $\mu$g/L) and 7. Nucleoside diphosphate kinase A concentration (nkda in $\mu$g/L).
+```{r tidylibs}
+library(pROC) 
+library(kableExtra)
+library(dplyr)
+library(tidyr)
+library(stringr)
+```
+
+For the purposes of illustration we will use a biomedical dataset available in the **pROC** package taken from a 2010 study by Turck et al examining blood biomarkers in patients suffering subarachnoid hemmorhage @turck2010multiparameter. The dataset has 7 variables named: 1. gos6: the Glasgow Coma Outcome Score (1--6) 2. outcome: Clinical Outcome (Good/Poor) 3. gender (M/F) 4. age 5. wfns: The World Federation of Neurological Surgeons score (1--5) 6. s100b: S100 calcium-binding protein B concentration (s100b in $\mu$g/L) and 7. ndka: Nucleoside diphosphate kinase A concentration (nkda in $\mu$g/L).
 
 While there are a number of ways to render a table into an RMarkdown document, to our mind the simplest means is to prepare a dataframe of results and to use the `kable()` function from the **knitr** package @xie2018knitr with the **kableExtra** package to permit many of the complex table structures available natively in LaTeX @2021kableextra. With these tools, a dataframe can be rendered as table easily as in the following example code chunk.
 
@@ -408,9 +416,9 @@ It is also important to note that within R code chunks one is able to interact w
 
 While a reader new to the concept of literate programming may not yet perceive the need, preparation of a manuscript in RMarkdown permits the use of a version-control system such as Git and a hosting system such as [github](https://github.com/). These systems allow change-tracking, collaboration and (when necessary) reversion to prior versions of the source code. By this means not only the final product but all prior incarnations are available for review. In contrast, traditional GUI-based statistical and document preparation tools generally lack mechanisms to track revisions.  The RMarkdown source code for this manuscript can be downloaded at [github.com/drdanholmes/jmsacl_reproducible_research](https://github.com/drdanholmes/jmsacl_reproducible_research) @drdanholmesgithub.
 
-Notwithstanding the transparency that the RMarkdown workflow affords, there still remains the problem that the R Language packages undergo very rapid development, especially those associated with the popular tidyverse suite @wickham2019. This means that documents that properly knit at present, may not knit in future because of package or function modification and/or deprecation. However, solutions to this problem are well-developed and the reader is encouraged to explore the use of the renv and checkpoint packages. The **renv** package creates a local R library within an R project @renv. Any R processes launched within the project directory use the dedicated project library instead of the user's regular R library, thereby guaranteeing future behaviour of the code. Construction and reconstruction of local *renv* libraries is discussed in Appendix A. The **checkpoint** and **packrat** packages address the same problem with different strategies [@ushley2021packrat; @devries2020checkpoint].
+Notwithstanding the transparency that the RMarkdown workflow affords, there still remains the problem that the R Language packages undergo very rapid development, especially those associated with the popular tidyverse suite @wickham2019. This means that documents that properly knit at present, may not knit in future because of package or function modification and/or deprecation. However, solutions to this problem are well-developed and the reader is encouraged to explore the use of the renv and checkpoint packages. The **renv** package creates a local R library within an R project @renv. Any R processes launched within the project directory use the dedicated project library instead of the user's regular R library, thereby guaranteeing future behaviour of the code. Construction and reconstruction of local *renv* libraries is discussed in the appendix. The **checkpoint** and **packrat** packages address the same problem with different strategies [@ushley2021packrat; @devries2020checkpoint].
 
-Both of these package-dependency solutions may still have compatibility problems, particularly as it pertains to the version of R itself. For this reason perhaps the closest to being a definitive solution is containerization with Docker or software container solution [@boettiger2015introduction; @nust2019containerit; @chamberlain2014using] into which all necessary software is contained in a minimalistic image that consumes much less resources than a virtual machine. The research can then be shared as a Docker image without concern that any required software is missing or out of date. For illustration purposes, we have containerized this manuscript and its dependencies using Docker. The Docker image is available at XXX and a description of how to use the image is provided as an appendix in the supplemental material.
+Both of these package-dependency solutions may still have compatibility problems, particularly as it pertains to the version of R itself. For this reason perhaps the closest to being a definitive solution is containerization with Docker or software container solution [@boettiger2015introduction; @nust2019containerit; @chamberlain2014using] into which all necessary software is contained in a minimalistic image that consumes much less resources than a virtual machine. The research can then be shared as a Docker image without concern that any required software is missing or out of date. For illustration purposes, we have containerized this manuscript and its dependencies using Docker. The Docker image is available at [https://hub.docker.com/repository/docker/drdanholmes/jmsacl_reproducible_research](https://hub.docker.com/repository/docker/drdanholmes/jmsacl_reproducible_research) and a description of how to use the image is provided in the appendix.
 
 The readers should understand that writing a manuscript using literate programming tools is more challenging and may be somewhat tedious in comparison to using GUI wordprocessing and/or statistical programs. Moreover, the process is probably slower @knauff2014efficiency. Not all scientists can or should be expected to become proficient in the use of Markdown, R, or Python in order to be able to share their scientific findings. Also challenging is the fact that reproducible research *de facto* requires the sharing of the raw data which scientists are reticent to do since others might "scoop" them on new findings using their own data. Additionally, data sharing introduces numerous questions and challenges as it pertains to research ethics @meyer2018practical.  
 
@@ -427,28 +435,28 @@ In summary, Rmarkdown offers a tremendous upside towards literature programming 
 
 <div id="refs"></div>
 
-# Appendix
+# Appendix {#appendix .unnumbered}
 
 ## Using the renv package to generate a local library {.unnumbered}
  The *renv* package @renv permits the reconstruction of the R library used at the time of authorship. In order to *define* a local library for others to use in future, one must define the RMarkdown document as an R project @rprojects and execute the commands `renv::init()` and `renv::snapshot()` within the project context. This will generate a renv.lock file in the project folder which defines the R and package repositories, package names, package versions, and the hashes.  
  
 To *reconstruct* the the library used to generate the RMarkdown output of this manuscript, one must clone (or download) the [github repository](https://github.com/drdanholmes/jmsacl_reproducible_research) @drdanholmesgithub to their local machine, define it as an R project (from an existing directory) as described in reference @rprojects and the execute `renv::init()` and `renv::restore()`.  This will download all the correct versions of the R packages to a within-project local library. When the RMarkdown file is knit, the local library will be used. 
 
-If the version of R on the local machine differs from the one used to generate the RMarkdown output originally, warnings may result and there is finite (albeit improbable) risk of compile failure. This can be overcome with the use of the Docker. 
+If the version of R, pandoc or any other operating system dependencies on the local machine differ from those used to generate the RMarkdown output originally, warnings may result and there is finite that the document will not compile. This can be overcome with the use of the Docker. 
 
 ## Using the Docker Container to Generate RMarkdown Output Reproducibly {.unnumbered}
 
-We have prepared a docker container having all the Linux dependencies and R package dependencies used for authorship of this manuscript. This docker file is optimized for this paper and may or may not work for other RMarkdown files as it won't necessarily have all the required R dependencies.
+We have prepared a Docker container having all the Linux dependencies and R package dependencies used for authorship of this manuscript. This Docker file is optimized for this paper and may or may not work for other RMarkdown files as it won't necessarily have all the required R package dependencies.
 
-Open a command line shell session and navigate to a folder where you want the PDF output of the manuscript to be produced. By executing the following commands you will:
+To use our Docker container to generate the manuscript PDF, open a command line shell session and navigate to a folder where you want the PDF output to be produced. By executing the following commands you will:
 
-1) pull the docker image from the dockerhub repository
+1) pull the Docker image from the dockerhub repository
 2) clone the manuscript github repository
 3) navigate into the project folder
-3) run the docker image and issue a command to the docker container to generate the PDF output.
+3) run the Docker image and issue a command to the Docker container to generate the PDF output.
 
 ```{}
-# Pulls the Docker image to your local machine's docker engine
+# Pulls the Docker image to your local machine's Docker engine
 docker pull drdanholmes/jmsacl_reproducible_research
 
 # Pulls down the gitub repository to the current working directory
@@ -457,12 +465,12 @@ git clone https://github.com/drdanholmes/jmsacl_reproducible_research.git
 # Navigates to the downloaded project folder
 cd jmsacl_reproducible_research
 
-# Invokes the docker container to process the .Rmd file to PDF
+# Invokes the Docker container to process the .Rmd file to PDF
 docker run --rm -it -w /home -v $PWD:/home m3d83/paper-jmsacl Rscript -e \
 'rmarkdown::render("JMSACL_Reproducible.Rmd")'
 ```
 
-Should the user want to modify and rebuild the Docker image, they may access the Dockerfile on the [Dockerhub registry cited above](https://hub.docker.com/repository/docker/drdanholmes/jmsacl_reproducible_research) which is:
+Should the user want to modify and rebuild the Docker image (to include other R libraries for example), they may access the Dockerfile on the [Docker Hub registry cited above](https://hub.docker.com/repository/docker/drdanholmes/jmsacl_reproducible_research) which is:
 [https://hub.docker.com/repository/docker/drdanholmes/jmsacl_reproducible_research](https://hub.docker.com/repository/docker/drdanholmes/jmsacl_reproducible_research)
 
 
