@@ -40,6 +40,7 @@ vignettes/*.pdf
 
 # R renv libraries
 renv/
+renv.lock
 
 # R profile
 .Rprofile

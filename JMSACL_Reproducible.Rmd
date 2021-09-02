@@ -33,7 +33,7 @@ abstract: |
   **Introduction**: With the rising complexity of modern multimarker analytical techniques and notable scientific publication retractions required for erroneous statistical analysis, there is increasing awareness of the importance of research transparency and reproducibility. The development of mature open-source tools for literate programming in multiple langauge paradigms has made fully-reproducible authorship possible. \newline
   **Objectives**: We describe the procedure for manuscript preparation using RMarkdown and and the R stastical programming language with application to JMSACL or any other Elsevier journal. \newline
   **Methods**: An instructional manuscript has been prepared in the RMarkdown markup language with stepwise directions on preparing sections, subsections, lists, tables, figures and reference management in an entirely reproducible format.\newline
-  **Results**: From RMarkdown code, a submission-ready pdf is generated and JMSACL-compatible LaTeX code is generated. These can be uploaded to the Editorial Manager.\newline
+  **Results**: From RMarkdown code, a submission-ready PDF is generated and JMSACL-compatible LaTeX code is generated. These can be uploaded to the Editorial Manager.\newline
   **Conclusion**: A completely reproducible manuscript preparation pipeline using the R and RMarkdown is described.\newline
 
 journal: "Journal of Mass Spectrometry and Advances in the Clinical Lab"
@@ -72,13 +72,13 @@ One aspect of research reproducibility is statistical transparency, which primar
 
 While there are a number of approaches to reproducible document preparation [@leisch2002sweave; @poore2013reproducible; @kluyver2016jupyter] perhaps the most mature of these is the use of the R **knitr** package @xie2018knitr and RMarkdown document format @allaire2021 inside of the RStudio open-source development environment for the R programming language.
 
-In this article, we will review all aspects of reproducible manuscript preparation for JMSACL using the R programming language and the **rmarkdown** and **knitr** packages to generate all calculated/rendered aspects of a manuscript, including headers, sections, figures, tables, captions, inline numerical results (including p-values and confidence intervals), references, and reference formatting. The result is LaTeX source code that can be submitted and/or compiled to pdf. LaTeX (stylized as \LaTeX) is a versatile and powerful type setting system used for publishing @latex_link.
+In this article, we will review all aspects of reproducible manuscript preparation for JMSACL using the R programming language and the **rmarkdown** and **knitr** packages to generate all calculated/rendered aspects of a manuscript, including headers, sections, figures, tables, captions, inline numerical results (including p-values and confidence intervals), references, and reference formatting. The result is LaTeX source code that can be submitted and/or compiled to PDF. LaTeX (stylized as \LaTeX) is a versatile and powerful type setting system used for publishing @latex_link.
 
 # Set Up
 
 ## Necessary Software Installation
 
-The reader will need to install the R programming language on their computer, which is available for MacOS, Linux and Windows operating systems @Rdownload. Additionally, in order to generate LaTeX code from which pdf files can be generated, it will be necessary to install the LaTeX markup language, which can be installed in a dedicated manner @latex_link or more simply by installing the R **tinytex** package @xie2019. The reader should also install the RStudio integrated development (IDE) environment @Rstudio. In order to generate LaTeX results immediately compatible with submissions to Elsevier journals, the **rticles** @rticles package is also required.
+The reader will need to install the R programming language on their computer, which is available for MacOS, Linux and Windows operating systems @Rdownload. Additionally, in order to generate LaTeX code from which PDF files can be generated, it will be necessary to install the LaTeX markup language, which can be installed in a dedicated manner @latex_link or more simply by installing the R **tinytex** package @xie2019. The reader should also install the RStudio integrated development (IDE) environment @Rstudio. In order to generate LaTeX results immediately compatible with submissions to Elsevier journals, the **rticles** @rticles package is also required.
 
 ## Creating a New Manuscript Template
 
@@ -153,10 +153,11 @@ Generally, it is undesirable to have R console (the code interface of R) output 
     # Chunk code here
     ```
 
-The above options suppress the R code in the document (`echo = FALSE`), all R warnings (`warning = FALSE`), and messages (`message = FALSE`), but permits variables to be assigned and tables/figures to be generated. The following code can be used to set these variables globally and by setting `fig.path = ""`, conveniently force figures to be output to the same folder as the .Rmd file.
+The above options suppress the R code in the document (`echo = FALSE`), all R warnings (`warning = FALSE`), and messages (`message = FALSE`), but permits variables to be assigned and tables/figures to be generated. The following code can be used to set these variables globally and by additionally setting `fig.path = ""`, figures are conveniently forced to be output to the same folder as the .Rmd file.
 
     ```{r, include = FALSE}`r ''`
-    knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, fig.path = "")
+    knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+    knitr::opts_chunk$set(fig.path = "")
     ```
 
 \noindent The parameter `include=FALSE` permits code to run, but suppresses all console and graphical output.
