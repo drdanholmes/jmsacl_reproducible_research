@@ -48,7 +48,7 @@ header-includes:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, fig.path = "")
 knitr::opts_chunk$set(fig.pos = "H", out.extra = "")
 knitr::opts_chunk$set(tidy.opts = list(width.cutoff = 60), tidy = TRUE)
 ```
@@ -86,7 +86,7 @@ Once the necessary software is installed, from a new session in RStudio, select 
 
 ```{r fig1, out.width = '60%', fig.cap = 'RStudio selection window for Elsevier Journal Article', fig.align = 'center'}
 library(png)
-knitr::include_graphics('Figures/Figure1.png')
+knitr::include_graphics('Figure1.png')
 ```
 
 # Proceeding with Writing
@@ -106,7 +106,7 @@ For sections of prose, RMarkdown uses the formatting of the Markdown markup lang
 Italicization of text is created by surrounding the text of interest with single asterisks so that `*text written like this*` will create output as *text written like this*. Corresponding use of double-asterisks will create bolded text so that `**text written like this**` will create this bolded output: **text written like this**.
 
 ```{r fig2, out.width = '75%', fig.cap = 'How to define sections and subsections', fig.align = 'center'}
-knitr::include_graphics('Figures/Figure2.png')
+knitr::include_graphics('Figure2.png')
 ```
 
 A benefit of writing in plain text where everything is explicitly encoded is that the author avoids the frustrations of hidden word processor decisions about automatic correction, formatting of text, bullets, and page breaks.  
@@ -116,7 +116,7 @@ A benefit of writing in plain text where everything is explicitly encoded is tha
 Bulleted lists are created with each item on a new line preceded by an `*`, while numbered lists are likewise created by a series of new lines preceded by the corresponding number of the list. Indented sublists are accomplished with indentation and the use of a `+`.
 
 ```{r fig3, out.width = '90%', fig.cap = 'Bulleted and numbered lists', fig.align = 'center'}
-knitr::include_graphics('Figures/Figure3.png')
+knitr::include_graphics('Figure3.png')
 ```
 
 ### Mathematics
@@ -153,10 +153,10 @@ Generally, it is undesirable to have R console (the code interface of R) output 
     # Chunk code here
     ```
 
-The above options suppress the R code in the document (`echo = FALSE`), all R warnings (`warning = FALSE`), and messages (`message = FALSE`), but permits variables to be assigned and tables/figures to be generated. The following template can be used to set these variables globally:
+The above options suppress the R code in the document (`echo = FALSE`), all R warnings (`warning = FALSE`), and messages (`message = FALSE`), but permits variables to be assigned and tables/figures to be generated. The following code can be used to set these variables globally and by setting `fig.path = ""`, conveniently force figures to be output to the same folder as the .Rmd file.
 
     ```{r, include = FALSE}`r ''`
-    knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+    knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, fig.path = "")
     ```
 
 \noindent The parameter `include=FALSE` permits code to run, but suppresses all console and graphical output.
@@ -406,8 +406,7 @@ Formatting of references is dictated by the citation style language (.csl) file 
 
 ## For Submission
 
-When an author is satisfied that their manuscript is ready for submission to JMSACL, they may knit the document a final time. This will generate a finalized LaTeX source file in the same folder as the .Rmd file with the same name but with a .tex file extension. 
-There will also be a folder generated and named according to the .Rmd file, in which there will be a subfolder, named figure-latex, that will contain all figures generated from the R code. Proceed with your submission via the Elsevier Editorial Manager site submitting the pdf as your manuscript file and the figures as per usual. Additionally, your .tex file, .bib file, and .csl file must each be submitted as a "LaTeX Source File".
+When an author is satisfied that their manuscript is ready for submission to JMSACL, they may knit the document one last time. This will generate a finalized LaTeX source file in the same folder as the .Rmd file having the same name but with a .tex file extension. The user should have set the global chunk option for figure locations to be local to the .Rmd by using `knitr::opts_chunk$set(fig.path = "")` as prescribed above. This will allow Elsevier's document management system to compile the LaTeX source code to PDF. Proceed with your submission process via the Elsevier Editorial Manager website submitting the .tex as your *manuscript* file and the figures as per usual. Additionally, your .bib file, and .csl file must each be submitted as a "LaTeX Source File".
 
 # Discussion
 
